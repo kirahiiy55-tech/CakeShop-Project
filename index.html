@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop (I.Yakimova)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/shop.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarLinks">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="index.html">
+                <img src="imgs/iracake-logo.svg" alt="IraCake" id="nav-logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCake"
+                aria-controls="navbarCake" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCake">
+                <ul class="navbar-nav mr-auto" id="navbarLinks">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#about" data-i18n="nav.home">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.catalog">
+                            Our cakes
+                        </a>
+                        <div class="dropdown-menu" id="cake-drops" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item cake-item" href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#sets" data-i18n="nav.sets">Set</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html" data-i18n="nav.order">Order cake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts" data-i18n="nav.contacts">Contacts</a>
+                    </li>
+                </ul>
+                <div class="nav-btns ms-auto">
+                    <form class="form-inline" id="searchForm" onsubmit="searchSite(event)">
+                        <input class="form-control mr-sm-2" type="search" id="searchInput" data-placeholder-en="Search" data-placeholder-ru="Поиск" data-placeholder-ua="Пошук" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <img src="imgs/search.svg" alt="Search" class="icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="vr vertical-divider"></div>
+
+            <div class="nav-btns ms-auto" id="cart-btn">
+                <a class="nav-link" href="cart.html" data-i18n="nav.cart" id="nav-cart">
+                    <img src="imgs/cart.svg" alt="Cart" class="icon">
+                    <span id="cart-counter">0</span>
+                </a>
+            </div>
+
+            <div class="lang-btns dropdown">
+                <button class="dropdown-toggle ms-auto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="imgs/lang.svg" alt="Language" class="icon">
+                </button>
+                <div class="dropdown-menu" id="lang-drops">
+                    <button class="dropdown-item" onclick="setLanguage('en'); toggleLangDropdown();">EN</button>
+                    <button class="dropdown-item" onclick="setLanguage('ru'); toggleLangDropdown();">RU</button>
+                    <button class="dropdown-item" onclick="setLanguage('ua'); toggleLangDropdown();">UA</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="about">
+            <div id="story">
+                <div class="about-text">
+                    <h4 data-i18n="about.storyTitle">Our Story</h4>
+                    
+                    <p data-i18n="about.storyText1">
+                        We are a small private bakery that grew out of home baking and a love for details. About a year
+                        ago, we began taking orders consciously — with a clear responsibility for taste, appearance, and
+                        the mood of each celebration. From the very beginning, we have been creating desserts as we
+                        would for ourselves and our loved ones: carefully, without rushing, and without compromising on
+                        quality.
+                    </p>
+                    
+                    <div class="collapse" id="storyCollapse">
+                        <p data-i18n="about.storyText2">
+                            We do not aim for mass production and intentionally remain a small project to personally control
+                            every order. Over the past year, we have built a community of people who
+                            return to us again — and this is the best proof of trust for us.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#storyCollapse" 
+                            aria-expanded="false" 
+                            aria-controls="storyCollapse">
+                        <span class="more-text" data-i18n="about.readMore">Read more</span>
+                        <span class="less-text" data-i18n="about.showLess">Show less</span>
+                    </button>
+                </div>
+                <img src="imgs/story.jpg" alt="story photo">
+            </div>
+
+            <div id="recipy">
+                <img src="imgs/recipe.jpg" alt="recipe photo">
+                <div class="about-text">
+                    <h4 data-i18n="about.recipyTitle">Recipes and Ingredients</h4>
+                    <p data-i18n="about.recipyText1">
+                        A good dessert always starts with good ingredients. We work with trusted suppliers and use
+                        high-quality products without questionable substitutes or cost-cutting shortcuts. Butter, cream,
+                        chocolate, sponge cakes, and fillings are selected to ensure consistent taste from order to
+                        order.
+                    </p>
+                    
+                    <div class="collapse" id="recipyCollapse">
+                        <p data-i18n="about.recipyText2">
+                            All desserts are made to order, in small batches, and always fresh. We focus on balanced recipes
+                            — without excessive sweetness or overloaded creams. For us, it is essential that a dessert is
+                            not only beautiful, but genuinely delicious and something you want to come back to.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#recipyCollapse" 
+                            aria-expanded="false" 
+                            aria-controls="recipyCollapse">
+                        <span class="more-text" data-i18n="about.readMore">Read more</span>
+                        <span class="less-text" data-i18n="about.showLess">Show less</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mission">
+                <div class="about-text">
+                    <h4 data-i18n="about.missionTitle">Our Desserts and Philosophy</h4>
+                    <p data-i18n="about.missionText1">
+                        We create cakes, bento cakes, cupcakes, and dessert sets to order for a variety of occasions —
+                        from intimate celebrations to weddings and business receptions. We work with birthdays, gender
+                        reveal parties, corporate events, and small personal moments.
+                    </p>
+                    
+                    <div class="collapse" id="missionCollapse">
+                        <p data-i18n="about.missionText2">
+                            We believe that sweets are not only for special occasions. Sometimes a cake is simply a way to
+                            treat yourself or make an ordinary day a little better. Our motto is simple and honest:
+                            <strong>make life sweeter</strong> — through flavor, careful craftsmanship, and attention to detail.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#missionCollapse" 
+                            aria-expanded="false" 
+                            aria-controls="missionCollapse">
+                        <span class="more-text" data-i18n="about.readMore">Read more</span>
+                        <span class="less-text" data-i18n="about.showLess">Show less</span>
+                    </button>
+                </div>
+                <img src="imgs/mission.jpg" alt="mission photo">
+            </div>
+
+            <div id="number-block">
+                <h1 data-i18n="number.header">For this year we</h1>
+                <div id="grid-numbers">
+                    <div id="number1">
+                        <div class="number-container">
+                            <h3 data-i18n="number.head1">smiled over</h3>
+                            <img src="imgs/100.svg" alt="100" class="numbers">
+                            <h4><i data-i18n="number.text1">clients</i></h4>
+                        </div>
+                    </div>
+
+                    <div id="number2">
+                        <div class="number-container">
+                            <h3 data-i18n="number.head2">baked</h3>
+                            <img src="imgs/140.svg" alt="140" class="numbers">
+                            <h4><i data-i18n="number.text2">cakes</i></h4>
+                        </div>
+                    </div>
+
+                    <div id="number3">
+                        <div class="number-container">
+                            <h3 data-i18n="number.head3">cooked</h3>
+                            <img src="imgs/3000.svg" alt="3000" class="numbers">
+                            <h4><i data-i18n="number.text3">cupcakes</i></h4>
+                        </div>
+                    </div>
+
+                    <div id="number4">
+                        <div class="number-container">
+                            <h3 data-i18n="number.head4">crafted</h3>
+                            <img src="imgs/260.svg" alt="260" class="numbers">
+                            <h4><i data-i18n="number.text4">bento-cakes</i></h4>
+                        </div>
+                    </div>
+
+                    <div id="number5">
+                        <div class="number-container">
+                            <h3 data-i18n="number.head5">joined</h3>
+                            <img src="imgs/50.svg" alt="50" class="numbers">
+                            <h4><i data-i18n="number.text5">parties</i></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="review-container">
+            <h1 data-i18n="review.header">Reviews from happy people</h1>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+            <div class="reviews">
+                <div class="owl-carousel reviews-carousel">
+                    <div class="review-item">
+                        <img src="imgs/review1.jpg" alt="Review" class="review-card">
+                    </div>
+
+                    <div class="review-item">
+                        <img src="imgs/review2.jpg" alt="Review" class="review-card">
+                    </div>
+
+                    <div class="review-item">
+                        <img src="imgs/review3.jpg" alt="Review" class="review-card">
+                    </div>
+
+                    <div class="review-item">
+                        <img src="imgs/review4.jpg" alt="Review" class="review-card">
+                    </div>
+
+                    <div class="review-item">
+                        <img src="imgs/review5.jpg" alt="Review" class="review-card">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="new-main">
+            <h1 data-i18n="new.header">Our new bakery</h1>
+            
+            <div id="new-cards">
+                <div class="card" id="newCard1">
+                    <h4 class="card-header" data-i18n="new.name1">Unicorn</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/unicorn.jpg" alt="Unicorn">
+                        <button class="ingredients-btn" onclick="openModal('unicorn')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text1">A fairytale atmosphere for young sweet tooths</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 100, 1, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 200, 1.5, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 300, 2, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'unicorn')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard2">
+                    <h4 class="card-header" data-i18n="new.name2">First kiss</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/firstkiss.jpg" alt="First kiss">
+                        <button class="ingredients-btn" onclick="openModal('firstkiss')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text2">A sweet gift for real lovers to remember start of lovestory</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 100, 1, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 360, 4, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 500, 6, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 800, 10, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 1100, 12, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'firstkiss')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard3">
+                    <h4 class="card-header" data-i18n="new.name3">Queen</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/queen.jpg" alt="Queen">
+                        <button class="ingredients-btn" onclick="openModal('queen')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button> 
+                    </div>
+                    <p class="card-text" data-i18n="new.text3">For true queens with or without a reason</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('queen', 100, 1, 'imgs/queen.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'queen')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard4">
+                    <h4 class="card-header" data-i18n="new.name4">HardRock</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/hardrock.jpg" alt="HardRock">
+                        <button class="ingredients-btn" onclick="openModal('hardrock')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text4">For an important party with serious music</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('hardrock', 100, 10, 'imgs/hardrock.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'hardrock')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <div id="footer-navigation">
+                <h5 data-i18n="footer.navHeader">About us</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="index.html#about" data-i18n="footer.history">History</a>
+                    </li>
+                    <li>
+                        <a href="index.html#number-block" data-i18n="footer.numbers">Why we</a>
+                    </li>
+                    <li>
+                        <a href="index.html#review-container" data-i18n="footer.reviews">Rewies</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html" data-i18n="footer.catalog">Products</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-catalog">
+                <h5 data-i18n="footer.cakeHeader">Products</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#sets" data-i18n="nav.sets">Sets</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-address-hours">
+                <div id="footer-address">
+                    <h5 data-i18n="footer.addressHead">Addres</h5>
+                    <p data-i18n="footer.address">25 Marshal Zhukov Avenue, Odesa 12165, Ukraine</p>
+                </div>
+
+                <div id="footer-hours">
+                    <h5 data-i18n="footer.hoursHead">Open hours</h5>
+                    <ul id="footer-hours-list">
+                        <li data-i18n="footer.MonFri">Monday-Friday - 10:00-20:00</li>
+                        <li data-i18n="footer.SatSun">Saturday-Sunday - 11:00-22:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <h5 data-i18n="footer.contacts">Contacts</h5>
+                <div>
+                    <ul class="footer-list">
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p>Email:</p>
+                            <a href="mailto:i.yakimova174@gmail.com" class="call">i.yakimova174@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-media">
+                    <a href="https://t.me/kirahi"><img src="imgs/telegram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/instagram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/tiktok.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/pinterest.svg" class="footer-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <p>© 2025, Iracake Home Bakery</p>
+            <a href="page404.html">404 test</a>
+        </div>
+    </footer>
+
+    <!-- modal blocks -->
+        <div id="ingredientModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <div id="modalIngredients"></div>
+            </div>
+        </div>
+
+        <div id="addToCartModal" class="modal">
+            <div class="modal-content">
+                <h3 data-i18n="catalog.addedToCart">Додано до кошику!</h3>
+                
+                <div id="added-item-preview"></div>
+                
+                <div class="modal-buttons">
+                    <button onclick="continueShoppingModal()" data-i18n="catalog.continueShopping">
+                        Продовжити покупки
+                    </button>
+                    <button onclick="goToCartModal()" data-i18n="catalog.goToCart">
+                        До кошику
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

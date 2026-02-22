@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop (I.Yakimova)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/shop.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarLinks">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="index.html">
+                <img src="imgs/iracake-logo.svg" alt="IraCake" id="nav-logo">
+            </a>
+
+            <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCake"
+            aria-controls="navbarCake"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCake">
+                <ul class="navbar-nav mr-auto" id="navbarLinks">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about" data-i18n="nav.home">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                        aria-current="page"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        data-i18n="nav.catalog">
+                            Our cakes
+                        </a>
+                        <div class="dropdown-menu" id="cake-drops" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item cake-item" href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#sets" data-i18n="nav.sets">Set</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="order.html" data-i18n="nav.order">Order cake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts" data-i18n="nav.contacts">Contacts</a>
+                    </li>
+                </ul>
+                <div class="nav-btns ms-auto">
+                    <form class="form-inline" id="searchForm" onsubmit="searchSite(event)">
+                        <input class="form-control mr-sm-2" type="search" id="searchInput" data-placeholder-en="Search" data-placeholder-ru="Поиск" data-placeholder-ua="Пошук" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <img src="imgs/search.svg" alt="Search" class="icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="vr vertical-divider"></div>
+
+            <div class="nav-btns ms-auto" id="cart-btn">
+                <a class="nav-link" href="cart.html" data-i18n="nav.cart" id="nav-cart">
+                    <img src="imgs/cart.svg" alt="Cart" class="icon">
+                    <span id="cart-counter">0</span>
+                </a>
+            </div>
+            
+            <div class="lang-btns dropdown">
+                <button class="dropdown-toggle ms-auto" 
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                    <img src="imgs/lang.svg" alt="Language" class="icon">
+                </button>
+                <div class="dropdown-menu" id="lang-drops">
+                    <button class="dropdown-item" onclick="setLanguage('en'); toggleLangDropdown();">EN</button>
+                    <button class="dropdown-item" onclick="setLanguage('ru'); toggleLangDropdown();">RU</button>
+                    <button class="dropdown-item" onclick="setLanguage('ua'); toggleLangDropdown();">UA</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="order-main">
+        <div id="cart-header">
+            <h1 data-i18n="cart.header">Your cart</h1>
+            <h3 data-i18n="cart.subtitle">Here you can look through your chosen products, add changes and your wishes to the order </h3>
+        </div>
+
+        <div id="cartOrderForm">
+            <div id="cartForm">
+                <div id="cartEmpty">
+                    <div id="empty-cart-grid">
+                        <div class="empty-cart-text">
+                            <h2 data-i18n="cart.emptyAlert">Please add wanted products to the cart</h2>
+                            <button class="cart-btn">
+                                <a href="catalog.html">
+                                    <span data-i18n="cart.catalogBtn">Make your choose</span>
+                                </a>
+                            </button>
+                            <h3 data-i18n="cart.or">OR</h3>
+                            <button class="cart-btn">
+                                <a href="order.html">
+                                    <span data-i18n="cart.indivOrderBtn">Let us know about your ideas</span>
+                                </a>
+                            </button>                            
+                        </div>
+
+                        <div class="cart-photo-container">
+                            <hr id="cart-divider" class="vr">
+                            <img src="imgs/cart-wind.jpg" class="cart-photo">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cartFull">
+                    <div id="cart-left">
+                        <h3 data-i18n="cart.productHead" style="font-family: 'Segoe Script';">Products</h3>
+                        <div class="cart-items-block">
+                            <div id="cart-item"></div>
+                        </div>
+                    </div>
+
+                    <div id="cart-right">
+                        <h3 data-i18n="cart.summary" style="font-family: 'Segoe Script';">Order Summary</h3>
+                        
+                        <div id="cart-total">
+                            <span data-i18n="cart.total">Total sum</span>
+                            <span id="totalSum">: 0₴</span>
+                        </div>
+
+                        <form action="https://formsubmit.co/kirahi.iy55@gmail.com" method="POST" class="order-form" id="cartForm">
+                            <input type="hidden" name="_subject" value="New order!">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="Order" id="orderItemsHidden">
+                            <input type="hidden" name="Total" id="totalPriceHidden">
+
+                            <div class="order-form-container">
+                                <label for="name" id="lbl-name" class="labels" data-i18n="order.nameLabel">
+                                    Name<span>*</span>
+                                </label>
+                                <input type="text" id="name" name="Name" placeholder="Ваше ім'я"
+                                        data-placeholder-en="Your name" data-placeholder-ru="Ваше имя"
+                                        data-placeholder-ua="Ваше ім'я" required>
+
+                                <label for="tel" id="lbl-tel" class="labels number" data-i18n="order.phoneLabel">
+                                    Phone number<span>*</span>
+                                </label>
+                                <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" required>
+
+                                <label for="nickname" id="lbl-nickname" class="labels" data-i18n="order.telegramLabel">
+                                    Telegram
+                                </label>
+                                <input type="text" id="nickname" name="Telegram" placeholder="@username">
+
+                                <label for="wish" id="lbl-wish" class="labels" data-i18n="order.wishLabel">
+                                    Add your wishes
+                                </label>
+                                <textarea id="wish" name="Wish" placeholder="Додатково..." data-placeholder-en="I wish..."
+                                        data-placeholder-ru="Дополнительно..." data-placeholder-ua="Додатково..."
+                                        maxlength="300"></textarea>
+
+                                <label for="delivery-date" id="lbl-delivery-date" class="labels" data-i18n="order.dateLabel">
+                                    Choose delivery date
+                                </label>
+                                <input type="date" id="delivery-date" name="DeliveryDate">
+                            </div>
+
+                            <div id="cart-order-btns">
+                                <button class="cart-order-btn" id="order-btn" type="submit">
+                                    <p data-i18n="cart.order">Make the order</p>
+                                </button>
+                                <button class="cart-order-btn" id="clearCartBtn">
+                                    <p data-i18n="cart.reset">Clear cart</p>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 data-i18n="order.delivery-rule-head">Delivery and payment</h3>
+        
+        <div class="delivery-rule">
+            <div id="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2750.8345722778163!2d30.710789875814978!3d46.41233546968145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6336b8782ae35%3A0xead8cba830ff6f21!2z0L_RgNC-0YHQv9C10LrRgiDQndC10LHQtdGB0L3QvtGXINCh0L7RgtC90ZYsIDI1LCDQntC00LXRgdCwLCDQntC00LXRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNjUwMDA!5e0!3m2!1sru!2sua!4v1771213477569!5m2!1sru!2sua"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <div id="rules">
+                <h5 data-i18n="order.term">Preparation time:</h5>
+                <ul>
+                    <li data-i18n="order.termrule">please order at least 3 days before</li>
+                </ul>
+                <hr class="rule-divider">
+                <h5 data-i18n="order.delivery">Delivery cost:</h5>
+                <ul>
+                    <li data-i18n="order.deliveryrule1">up to 1000₴ — 200₴</li>
+                    <li data-i18n="order.deliveryrule2">from 1000₴ — 100₴</li>
+                    <li data-i18n="order.deliveryrule3">from 2000₴ — free</li>
+                </ul>
+                <hr class="rule-divider">
+                <h5 data-i18n="order.payment">Payment:</h5>
+                <ul>
+                    <li data-i18n="order.paymentrule1">50% prepayment when you place the order</li>
+                    <li data-i18n="order.paymentrule2">the rest — when you receive the order</li>
+                    <li data-i18n="order.paymentrule3">pay: bank transfer, cash (pick-up), cash to the courier</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <div id="footer-navigation">
+                <h5 data-i18n="footer.navHeader">About us</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="index.html#about" data-i18n="footer.history">History</a>
+                    </li>
+                    <li>
+                        <a href="index.html#number-block" data-i18n="footer.numbers">Why we</a>
+                    </li>
+                    <li>
+                        <a href="index.html#review-container" data-i18n="footer.reviews">Rewies</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html" data-i18n="footer.catalog">Products</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-catalog">
+                <h5 data-i18n="footer.cakeHeader">Products</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#sets" data-i18n="nav.sets">Sets</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-address-hours">
+                <div id="footer-address">
+                    <h5 data-i18n="footer.addressHead">Addres</h5>
+                    <p data-i18n="footer.address">25 Marshal Zhukov Avenue, Odesa 12165, Ukraine</p>
+                </div>
+
+                <div id="footer-hours">
+                    <h5 data-i18n="footer.hoursHead">Open hours</h5>
+                    <ul id="footer-hours-list">
+                        <li data-i18n="footer.MonFri">Monday-Friday - 10:00-20:00</li>
+                        <li data-i18n="footer.SatSun">Saturday-Sunday - 11:00-22:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <h5 data-i18n="footer.contacts">Contacts</h5>
+                <div>
+                    <ul class="footer-list">
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p>Email:</p>
+                            <a href="mailto:i.yakimova174@gmail.com" class="call">i.yakimova174@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-media">
+                    <a href="https://t.me/kirahi"><img src="imgs/telegram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/instagram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/tiktok.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/pinterest.svg" class="footer-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <p>© 2025, Iracake Home Bakery</p>
+            <a href="page404.html">404 test</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

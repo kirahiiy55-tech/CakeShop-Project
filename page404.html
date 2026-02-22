@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop (I.Yakimova)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/shop.css" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div id="page404-main">
+            <br>
+            <h1 data-i18n="page404.header">Ooops... It seems someone ate everything on this page</h1>
+            <br>
+            <div>
+                <img src="imgs/page404.svg">
+            </div>
+
+            <h5 data-i18n="page404.text">Let`s look what is left</h5>
+            <button id="btn-404">
+                <a href="catalog.html" data-i18n="page404.btn">Go back to store</a>
+            </button>
+        </div>
+    </main>
+
+    <footer id="footer404">
+        <div id="footer-content">
+            <div id="footer-navigation">
+                <h5 data-i18n="footer.navHeader">About us</h5>
+                <ul class="footer-list navi-list">
+                    <li>
+                        <a href="index.html#about" data-i18n="footer.history">History</a>
+                    </li>
+                    <li>
+                        <a href="index.html#number-block" data-i18n="footer.numbers">Why we</a>
+                    </li>
+                    <li>
+                        <a href="index.html#review-container" data-i18n="footer.reviews">Rewies</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html" data-i18n="footer.catalog">Products</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-catalog">
+                <h5 data-i18n="footer.cakeHeader">Products</h5>
+                <ul class="footer-list navi-list">
+                    <li>
+                        <a href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#sets" data-i18n="nav.sets">Sets</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-address-hours">
+                <div id="footer-address">
+                    <h5 data-i18n="footer.addressHead">Addres</h5>
+                    <p data-i18n="footer.address">25 Marshal Zhukov Avenue, Odesa 12165, Ukraine</p>
+                </div>
+
+                <div id="footer-hours">
+                    <h5 data-i18n="footer.hoursHead">Open hours</h5>
+                    <ul id="footer-hours-list">
+                        <li data-i18n="footer.MonFri">Monday-Friday - 10:00-20:00</li>
+                        <li data-i18n="footer.SatSun">Saturday-Sunday - 11:00-22:00</li>
+                    </ul>
+                </div>
+
+                <h5 data-i18n="footer.langHead">Language</h5>
+                <div class="lang-switch">
+                    <button class="lang-item" onclick="setLanguage('en'); toggleLangDropdown();">EN</button>
+                    <span class="divider">|</span>
+                    <button class="lang-item" onclick="setLanguage('ru'); toggleLangDropdown();">RU</button>
+                    <span class="divider">|</span>
+                    <button class="lang-item" onclick="setLanguage('ua'); toggleLangDropdown();">UA</button>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <h5 data-i18n="footer.contacts">Contacts</h5>
+                <div>
+                    <ul class="footer-list">
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p>Email:</p>
+                            <a href="mailto:i.yakimova174@gmail.com" class="call">i.yakimova174@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-media">
+                    <a href="https://t.me/kirahi"><img src="imgs/telegram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/instagram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/tiktok.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/pinterest.svg" class="footer-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <p>© 2025, Iracake Home Bakery</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop (I.Yakimova)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/shop.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarLinks">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="index.html">
+                <img src="imgs/iracake-logo.svg" alt="IraCake" id="nav-logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCake"
+                aria-controls="navbarCake" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCake">
+                <ul class="navbar-nav mr-auto" id="navbarLinks">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about" data-i18n="nav.home">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.catalog">
+                            Our cakes
+                        </a>
+                        <div class="dropdown-menu" id="cake-drops" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item cake-item" href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cupcakes"
+                                data-i18n="nav.cupcakes">Cupcakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#sets" data-i18n="nav.sets">Set</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="order.html" data-i18n="nav.order">Order cake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts" data-i18n="nav.contacts">Contacts</a>
+                    </li>
+                </ul>
+                <div class="nav-btns ms-auto">
+                    <form class="form-inline" id="searchForm" onsubmit="searchSite(event)">
+                        <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search"
+                            data-placeholder-en="Search" data-placeholder-ru="Поиск" data-placeholder-ua="Пошук"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <img src="imgs/search.svg" alt="Search" class="icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="vr vertical-divider"></div>
+
+            <div class="nav-btns ms-auto" id="cart-btn">
+                <a class="nav-link" href="cart.html" data-i18n="nav.cart" id="nav-cart">
+                    <img src="imgs/cart.svg" alt="Cart" class="icon">
+                </a>
+            </div>
+
+            <div class="lang-btns dropdown">
+                <button class="dropdown-toggle ms-auto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="imgs/lang.svg" alt="Language" class="icon">
+                </button>
+                <div class="dropdown-menu" id="lang-drops">
+                    <button class="dropdown-item" onclick="setLanguage('en'); toggleLangDropdown();">EN</button>
+                    <button class="dropdown-item" onclick="setLanguage('ru'); toggleLangDropdown();">RU</button>
+                    <button class="dropdown-item" onclick="setLanguage('ua'); toggleLangDropdown();">UA</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="order-main">
+        <div id="order-head">
+            <h1 data-i18n="order.header">Want to order something special?</h1>
+            <h3 data-i18n="order.subtitle">We`re ready to make it!</h3>
+        </div>
+
+        <div id="indivOrderForm">
+            <div id="orderForm">
+                <form action="https://formsubmit.co/kirahi.iy55@gmail.com" method="POST" class="order-form">
+                    <input type="hidden" name="_subject" value="New order!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="form-container">
+                        <div class="labels-column ms-auto">
+                            <label for="name" id="lbl-name" class="labels"
+                                data-i18n="order.nameLabel">Name<span>*</span></label>
+                            <label for="tel" id="lbl-tel" class="labels number" data-i18n="order.phoneLabel">Phone
+                                number<span>*</span></label>
+                            <label for="nickname" id="lbl-nickname" class="labels"
+                                data-i18n="order.telegramLabel">Telegram</label>
+                            <label for="product" id="lbl-product" class="labels" data-i18n="order.productLabel">Product
+                                type<span>*</span></label>
+                            <label for="sponge" id="lbl-sponge" class="labels"
+                                data-i18n="order.spongeLabel">Sponge type<span>*</span></label>
+                            <label for="frosting" id="lbl-frosting" class="labels"
+                                data-i18n="order.frostingLabel">Frosting type<span>*</span></label>
+                            <label for="filling" id="lbl-filling" class="labels" data-i18n="order.fillingLabel">Filling
+                                type<span>*</span></label>
+                            <label for="wish" id="lbl-wish" class="labels" data-i18n="order.wishLabel">Add your
+                                wishes</label>
+                            <label for="file" id="lbl-file" class="labels" data-i18n="order.fileLabel">Reference</label>
+                            <label for="delivery-date" id="lbl-delivery-date" class="labels"
+                                data-i18n="order.dateLabel">Choose delivery date<span>*</span></label>
+                        </div>
+
+                        <div class="inputs-column mx-auto">
+                            <input type="text" id="name" name="Name" placeholder="Ваше ім'я"
+                                data-placeholder-en="Your name" data-placeholder-ru="Ваше имя"
+                                data-placeholder-ua="Ваше ім'я" required>
+
+                            <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" required>
+
+                            <input type="text" id="nickname" name="Telegram" placeholder="@username">
+
+                            <div class="custom-select">
+                                <button type="button" class="select-button" data-bs-toggle="dropdown"
+                                    id="productButton">
+                                    <span data-i18n="order.typeHeader">Choose product type</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="cake" data-target="productHidden">
+                                            <span data-i18n="order.caketype">Cake</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="cupcake" data-target="productHidden">
+                                            <span data-i18n="order.cupcaketype">Cupcake</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="bento" data-target="productHidden">
+                                            <span data-i18n="order.bentotype">Bento-cake</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="Product" id="productHidden" required>
+
+                            <div class="custom-select">
+                                <button type="button" class="select-button" data-bs-toggle="dropdown"
+                                    id="spongeButton">
+                                    <span data-i18n="order.spongeHeader">Choose sponge type</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="vanilla" data-target="spongeHidden">
+                                            <span data-i18n="order.brownie">Brownie</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="chocolate" data-target="spongeHidden">
+                                            <span data-i18n="order.vanilla">Vanilla</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="berry" data-target="spongeHidden">
+                                            <span data-i18n="order.nut">Nut</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="coffee" data-target="spongeHidden">
+                                            <span data-i18n="order.Lemon">Lemon</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="other" data-target="spongeHidden">
+                                            <span data-i18n="order.other">Other</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="Sponge" id="spongeHidden" required>
+
+                            <div class="custom-select">
+                                <button type="button" class="select-button" data-bs-toggle="dropdown"
+                                    id="frostingButton">
+                                    <span data-i18n="order.frostingHeader">Choose frosting type</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="vanilla" data-target="frostingHidden">
+                                            <span data-i18n="order.vanilla">Vanilla</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="chocolate" data-target="frostingHidden">
+                                            <span data-i18n="order.chocolate">Chocolate</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="berry" data-target="frostingHidden">
+                                            <span data-i18n="order.berry">Berry</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="coffee" data-target="frostingHidden">
+                                            <span data-i18n="order.coffee">Coffee</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="yogurt" data-target="frostingHidden">
+                                            <span data-i18n="order.yogurt">Yogurt</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="creamCheese" data-target="frostingHidden">
+                                            <span data-i18n="order.creamCheese">Cream-cheese</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="other" data-target="frostingHidden">
+                                            <span data-i18n="order.other">Other</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="Frosting" id="frostingHidden" required>
+
+                            <div class="custom-select">
+                                <button type="button" class="select-button" data-bs-toggle="dropdown"
+                                    id="fillingButton">
+                                    <span data-i18n="order.fillingHeader">Choose filling type</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="apple" data-target="fillingHidden">
+                                            <span data-i18n="order.apple">Apple jam</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="chocolate" data-target="fillingHidden">
+                                            <span data-i18n="order.chocolate">Chocolate</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="raspberry" data-target="fillingHidden">
+                                            <span data-i18n="order.raspberry">Raspberry jam</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="strawberry" data-target="fillingHidden">
+                                            <span data-i18n="order.strawberry">Strawberry jam</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="orange" data-target="fillingHidden">
+                                            <span data-i18n="order.orange">Orange jam</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="caramel" data-target="fillingHidden">
+                                            <span data-i18n="order.caramel">Caramel</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-value="other" data-target="fillingHidden">
+                                            <span data-i18n="order.other">Other</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="Filling" id="fillingHidden">
+
+                            <textarea id="wish" name="Wish" placeholder="Додатково..." data-placeholder-en="I wish..."
+                                data-placeholder-ru="Дополнительно..." data-placeholder-ua="Додатково..."
+                                maxlength="300"></textarea>
+
+                            <label for="fileInput" class="custom-file-button">
+                                <span id="fileLabel" data-i18n="order.chooseFile">Choose file</span>
+                            </label>
+                            <input type="file" name="reference" accept="image/png, image/jpg, image/jpeg, image/webp" id="fileInput" style="display: none;">
+
+                            <input type="date" id="delivery-date" name="DeliveryDate">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="ms-auto" id="indiv-order-btn" data-i18n="order.order">
+                        Order
+                    </button>
+                </form>
+            </div>
+
+            <div class="form-photo-container">
+                <hr id="form-divider" class="vr">
+                <img src="imgs/form-wind.jpg" class="form-photo">
+            </div>
+        </div>
+
+        <h3 data-i18n="order.delivery-rule-head">Delivery and payment</h3>
+        
+        <div class="delivery-rule">
+            <div id="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2750.8345722778163!2d30.710789875814978!3d46.41233546968145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6336b8782ae35%3A0xead8cba830ff6f21!2z0L_RgNC-0YHQv9C10LrRgiDQndC10LHQtdGB0L3QvtGXINCh0L7RgtC90ZYsIDI1LCDQntC00LXRgdCwLCDQntC00LXRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNjUwMDA!5e0!3m2!1sru!2sua!4v1771213477569!5m2!1sru!2sua"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <div id="rules">
+                <h5 data-i18n="order.term">Preparation time:</h5>
+                <ul>
+                    <li data-i18n="order.termrule">please order at least 3 days before</li>
+                </ul>
+                <hr class="rule-divider">
+                <h5 data-i18n="order.delivery">Delivery cost:</h5>
+                <ul>
+                    <li data-i18n="order.deliveryrule1">up to 1000₴ — 200₴</li>
+                    <li data-i18n="order.deliveryrule2">from 1000₴ — 100₴</li>
+                    <li data-i18n="order.deliveryrule3">from 2000₴ — free</li>
+                </ul>
+                <hr class="rule-divider">
+                <h5 data-i18n="order.payment">Payment:</h5>
+                <ul>
+                    <li data-i18n="order.paymentrule1">50% prepayment when you place the order</li>
+                    <li data-i18n="order.paymentrule2">the rest — when you receive the order</li>
+                    <li data-i18n="order.paymentrule3">pay: bank transfer, cash (pick-up), cash to the courier</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <div id="footer-navigation">
+                <h5 data-i18n="footer.navHeader">About us</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="index.html#about" data-i18n="footer.history">History</a>
+                    </li>
+                    <li>
+                        <a href="index.html#number-block" data-i18n="footer.numbers">Why we</a>
+                    </li>
+                    <li>
+                        <a href="index.html#review-container" data-i18n="footer.reviews">Rewies</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html" data-i18n="footer.catalog">Products</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-catalog">
+                <h5 data-i18n="footer.cakeHeader">Products</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#sets" data-i18n="nav.sets">Sets</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-address-hours">
+                <div id="footer-address">
+                    <h5 data-i18n="footer.addressHead">Addres</h5>
+                    <p data-i18n="footer.address">25 Marshal Zhukov Avenue, Odesa 12165, Ukraine</p>
+                </div>
+
+                <div id="footer-hours">
+                    <h5 data-i18n="footer.hoursHead">Open hours</h5>
+                    <ul id="footer-hours-list">
+                        <li data-i18n="footer.MonFri">Monday-Friday - 10:00-20:00</li>
+                        <li data-i18n="footer.SatSun">Saturday-Sunday - 11:00-22:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <h5 data-i18n="footer.contacts">Contacts</h5>
+                <div>
+                    <ul class="footer-list">
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p>Email:</p>
+                            <a href="mailto:i.yakimova174@gmail.com" class="call">i.yakimova174@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-media">
+                    <a href="https://t.me/kirahi"><img src="imgs/telegram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/instagram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/tiktok.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/pinterest.svg" class="footer-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <p>© 2025, Iracake Home Bakery</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop (I.Yakimova)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/shop.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarLinks">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="index.html">
+                <img src="imgs/iracake-logo.svg" alt="IraCake" id="nav-logo">
+            </a>
+
+            <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCake"
+            aria-controls="navbarCake"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCake">
+                <ul class="navbar-nav mr-auto" id="navbarLinks">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about" data-i18n="nav.home">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        data-i18n="nav.catalog">
+                            Our cakes
+                        </a>
+                        <div class="dropdown-menu" id="cake-drops" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item cake-item" href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                            <a class="dropdown-item cake-item" href="catalog.html#sets" data-i18n="nav.sets">Set</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html" data-i18n="nav.order">Order cake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts" data-i18n="nav.contacts">Contacts</a>
+                    </li>
+                </ul>
+                <div class="nav-btns ms-auto">
+                    <form class="form-inline" id="searchForm" onsubmit="searchSite(event)">
+                        <input class="form-control mr-sm-2" type="search" id="searchInput" data-placeholder-en="Search" data-placeholder-ru="Поиск" data-placeholder-ua="Пошук" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <img src="imgs/search.svg" alt="Search" class="icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="vr vertical-divider"></div>
+
+            <div class="nav-btns ms-auto" id="cart-btn">
+                <a class="nav-link" href="cart.html" data-i18n="nav.cart" id="nav-cart">
+                    <img src="imgs/cart.svg" alt="Cart" class="icon">
+                    <span id="cart-counter">0</span>
+                </a>
+            </div>
+            
+            <div class="lang-btns dropdown">
+                <button class="dropdown-toggle ms-auto" 
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                    <img src="imgs/lang.svg" alt="Language" class="icon">
+                </button>
+                <div class="dropdown-menu" id="lang-drops">
+                    <button class="dropdown-item" onclick="setLanguage('en'); toggleLangDropdown();">EN</button>
+                    <button class="dropdown-item" onclick="setLanguage('ru'); toggleLangDropdown();">RU</button>
+                    <button class="dropdown-item" onclick="setLanguage('ua'); toggleLangDropdown();">UA</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="new-cakes">
+            <h1 data-i18n="new.header">Our new bakery</h1>
+            
+            <div id="new-cards">
+                <div class="card" id="newCard1" data-product-id="unicorn">
+                    <h4 class="card-header" data-i18n="new.name1">Unicorn</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/unicorn.jpg" alt="Unicorn">
+                        <button class="ingredients-btn" onclick="openModal('unicorn')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text1">A fairytale atmosphere for young sweet tooths</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 100, 1, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 200, 1.5, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 300, 2, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'unicorn')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard2" data-product-id="firstkiss">
+                    <h4 class="card-header" data-i18n="new.name2">First kiss</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/firstkiss.jpg" alt="First kiss">
+                        <button class="ingredients-btn" onclick="openModal('firstkiss')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text2">A sweet gift for real lovers to remember start of lovestory</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 100, 1, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 360, 4, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 500, 6, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 800, 10, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 1100, 12, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'firstkiss')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard3" data-product-id="queen">
+                    <h4 class="card-header" data-i18n="new.name3">Queen</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/queen.jpg" alt="Queen">
+                        <button class="ingredients-btn" onclick="openModal('queen')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button> 
+                    </div>
+                    <p class="card-text" data-i18n="new.text3">For true queens with or without a reason</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('queen', 100, 1, 'imgs/queen.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'queen')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="newCard4" data-product-id="hardrock">
+                    <h4 class="card-header" data-i18n="new.name4">HardRock</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/hardrock.jpg" alt="HardRock">
+                        <button class="ingredients-btn" onclick="openModal('hardrock')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="new.text4">For an important party with serious music</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('hardrock', 100, 10, 'imgs/hardrock.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'hardrock')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cakes">
+            <h1 data-i18n="cake.header">Cakes</h1>
+
+            <div class="catalog-block">
+                <div class="card" id="newCard1" data-product-id="unicorn">
+                    <h4 class="card-header" data-i18n="cake.name1">Unicorn</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/unicorn.jpg" alt="Unicorn">
+                        <button class="ingredients-btn" onclick="openModal('unicorn')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text1">A fairytale atmosphere for young sweet tooths</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 100, 1, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 200, 1.5, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('unicorn', 300, 2, 'imgs/unicorn.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'unicorn')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="napoleon">
+                    <h4 class="card-header" data-i18n="cake.name2">Napoleon</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/napoleon.jpg" alt="Napoleon">
+                        <button class="ingredients-btn" onclick="openModal('napoleon')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text2">Classic puff pastry perfection with creamy custard layers</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('napoleon', 100, 1, 'imgs/napoleon.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('napoleon', 200, 1.5, 'imgs/napoleon.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('napoleon', 300, 2, 'imgs/napoleon.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'napoleon')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="milk">
+                    <h4 class="card-header" data-i18n="cake.name3">Milk girl</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/milk girl.jpg" alt="Milk girl">
+                        <button class="ingredients-btn" onclick="openModal('milkgirl')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text3">Rich caramel indulgence with condensed milk and walnuts</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('milkgirl', 100, 1, 'imgs/milkgirl.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('milkgirl', 200, 1.5, 'imgs/milkgirl.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('milkgirl', 300, 2, 'imgs/milkgirl.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'milkgirl')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="redvelvet">
+                    <h4 class="card-header" data-i18n="cake.name4">Red velvet</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/red velvet.jpg" alt="Red velvet">
+                        <button class="ingredients-btn" onclick="openModal('redvelvet')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text4">Velvety red sponge with cream cheese frosting</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('redvelvet', 100, 1, 'imgs/redvelvet.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('redvelvet', 200, 1.5, 'imgs/redvelvet.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('redvelvet', 300, 2, 'imgs/redvelvet.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'redvelvet')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="medovik">
+                    <h4 class="card-header" data-i18n="cake.name5">Honey cake</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/medovik.jpg" alt="Honey cake">
+                        <button class="ingredients-btn" onclick="openModal('medovik')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text5">Traditional honey layers with tangy sour cream</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('medovik', 100, 1, 'imgs/medovik.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('medovik', 200, 1.5, 'imgs/medovik.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('medovik', 300, 2, 'imgs/medovik.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'medovik')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="esterhazy">
+                    <h4 class="card-header" data-i18n="cake.name6">Esterhazy</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/esterhazy.jpg" alt="Esterhazy">
+                        <button class="ingredients-btn" onclick="openModal('esterhazy')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text6">Elegant nut-layered Austrian masterpiece</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('esterhazy', 100, 1, 'imgs/esterhazy.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('esterhazy', 200, 1.5, 'imgs/esterhazy.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('esterhazy', 300, 2, 'imgs/esterhazy.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'esterhazy')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="coffeetime">
+                    <h4 class="card-header" data-i18n="cake.name7">Coffee-time</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/coffeetime.jpg" alt="Coffee-time">
+                        <button class="ingredients-btn" onclick="openModal('coffeetime')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text7">Bold coffee flavor for true espresso lovers</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('coffeetime', 100, 1, 'imgs/coffeetime.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('coffeetime', 200, 1.5, 'imgs/coffeetime.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('coffeetime', 300, 2, 'imgs/coffeetime.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'coffeetime')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cakeCard" data-product-id="tiramisu">
+                    <h4 class="card-header" data-i18n="cake.name8">Tiramisu</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/tiramisu.jpg" alt="Tiramisu">
+                        <button class="ingredients-btn" onclick="openModal('tiramisu')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cake.text8">Italian classic with mascarpone and coffee-soaked ladyfingers</p>
+
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('tiramisu', 100, 1, 'imgs/tiramisu.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('tiramisu', 200, 1.5, 'imgs/tiramisu.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg1-5">1.5 kg</span> 
+                                    <span> - 200₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('tiramisu', 300, 2, 'imgs/tiramisu.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg2">2 kg</span>
+                                    <span> - 300₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'tiramisu')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cupcakes">
+            <h1 data-i18n="cupcake.header">Cupcakes</h1>
+
+            <div class="catalog-block">
+                <div class="card" id="newCard2" data-product-id="firstkiss">
+                    <h4 class="card-header" data-i18n="cupcake.name1">First kiss</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/firstkiss.jpg" alt="First kiss">
+                        <button class="ingredients-btn" onclick="openModal('firstkiss')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text1">A sweet gift for real lovers to remember start of lovestory</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 100, 1, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 360, 4, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 500, 6, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 800, 10, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstkiss', 1100, 12, 'imgs/firstkiss.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'firstkiss')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="orangeboom">
+                    <h4 class="card-header" data-i18n="cupcake.name2">Orange Boom</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/orangeboom.jpg" alt="Orange Boom">
+                        <button class="ingredients-btn" onclick="openModal('orangeboom')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text2">Bright citrus burst with orange zest and sunshine vibes</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('orangeboom', 100, 1, 'imgs/orangeboom.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('orangeboom', 360, 4, 'imgs/orangeboom.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('orangeboom', 500, 6, 'imgs/orangeboom.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('orangeboom', 800, 10, 'imgs/orangeboom.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('orangeboom', 1100, 12, 'imgs/orangeboom.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'orangeboom')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="raspberryparadise">
+                    <h4 class="card-header" data-i18n="cupcake.name3">Raspberry Paradise</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/raspberryparadise.jpg" alt="Raspberry Paradise">
+                        <button class="ingredients-btn" onclick="openModal('raspberryparadise')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text3">Pistachio cream heaven topped with freeze-dried raspberries</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('raspberryparadise', 100, 1, 'imgs/raspberryparadise.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('raspberryparadise', 360, 4, 'imgs/raspberryparadise.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('raspberryparadise', 500, 6, 'imgs/raspberryparadise.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('raspberryparadise', 800, 10, 'imgs/raspberryparadise.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('raspberryparadise', 1100, 12, 'imgs/raspberryparadise.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'raspberryparadise')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="plombir">
+                    <h4 class="card-header" data-i18n="cupcake.name4">Ice cream</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/plombir.jpg" alt="Ice cream">
+                        <button class="ingredients-btn" onclick="openModal('plombir')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text4">Classic vanilla sweetness reminiscent of ice cream</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('plombir', 100, 1, 'imgs/plombir.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('plombir', 360, 4, 'imgs/plombir.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('plombir', 500, 6, 'imgs/plombir.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('plombir', 800, 10, 'imgs/plombir.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('plombir', 1100, 12, 'imgs/plombir.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'plombir')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="rainbow">
+                    <h4 class="card-header" data-i18n="cupcake.name5">Rainbow</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/rainbow.jpg" alt="Rainbow">
+                        <button class="ingredients-btn" onclick="openModal('rainbow')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text5">Colorful layers of joy in every bite</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('rainbow', 100, 1, 'imgs/rainbow.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('rainbow', 360, 4, 'imgs/rainbow.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('rainbow', 500, 6, 'imgs/rainbow.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('rainbow', 800, 10, 'imgs/rainbow.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('rainbow', 1100, 12, 'imgs/rainbow.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'rainbow')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="jungle">
+                    <h4 class="card-header" data-i18n="cupcake.name6">Jungle</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/jungle.jpg" alt="Jungle">
+                        <button class="ingredients-btn" onclick="openModal('jungle')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text6">Tropical adventure with chocolate and palm tree topper</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('jungle', 100, 1, 'imgs/jungle.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('jungle', 360, 4, 'imgs/jungle.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('jungle', 500, 6, 'imgs/jungle.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('jungle', 800, 10, 'imgs/jungle.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('jungle', 1100, 12, 'imgs/jungle.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'jungle')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="starrynight">
+                    <h4 class="card-header" data-i18n="cupcake.name7">Starry Night</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/starrynight.jpg" alt="Starry Night">
+                        <button class="ingredients-btn" onclick="openModal('starrynight')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text7">Van Gogh-inspired blue and yellow swirls with starry confetti</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('starrynight', 100, 1, 'imgs/starrynight.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('starrynight', 360, 4, 'imgs/starrynight.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('starrynight', 500, 6, 'imgs/starrynight.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('starrynight', 800, 10, 'imgs/starrynight.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('starrynight', 1100, 12, 'imgs/starrynight.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'starrynight')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="cupcakeCard" data-product-id="bee">
+                    <h4 class="card-header" data-i18n="cupcake.name8">Bee</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/bee.jpg" alt="Bee">
+                        <button class="ingredients-btn" onclick="openModal('bee')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="cupcake.text8">Honey sponge with black and yellow stripes, perfect for spring</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('bee', 100, 1, 'imgs/bee.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num1">1 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('bee', 360, 4, 'imgs/bee.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num4">4 pcs</span>
+                                    <span> - 360₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('bee', 500, 6, 'imgs/bee.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num6">6 pcs</span> 
+                                    <span> - 500₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('bee', 800, 10, 'imgs/bee.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 800₴</span>
+                                </p>
+                                <p class="dropdown-item price-item" onclick="selectPrice('bee', 1100, 12, 'imgs/bee.jpg', 'pcs', this)">
+                                    <span data-i18n="catalog.num12">12 pcs</span> 
+                                    <span> - 1100₴</span>
+                                </p>    
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'bee')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bento">
+            <h1 data-i18n="bento.header">Bento</h1>
+
+            <div class="catalog-block">
+                <div class="card" id="bentoCard" data-product-id="queen">
+                    <h4 class="card-header" data-i18n="bento.name1">Queen</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/queen.jpg" alt="Queen">
+                        <button class="ingredients-btn" onclick="openModal('queen')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text1">For true queens with or without a reason</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('queen', 100, 1, 'imgs/queen.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'queen')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="penguin">
+                    <h4 class="card-header" data-i18n="bento.name2">Penguin</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/penguin.jpg" alt="Penguin">
+                        <button class="ingredients-btn" onclick="openModal('penguin')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text2">Adorable penguin design for cozy winter celebrations</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('penguin', 100, 1, 'imgs/penguin.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'penguin')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="gamepad">
+                    <h4 class="card-header" data-i18n="bento.name3">Gamepad</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/gamepad.jpg" alt="Gamepad">
+                        <button class="ingredients-btn" onclick="openModal('gamepad')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text3">Gaming-themed cake for console enthusiasts</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('gamepad', 100, 1, 'imgs/gamepad.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'gamepad')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="postcard">
+                    <h4 class="card-header" data-i18n="bento.name4">Postcard</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/postcard.jpg" alt="Postcard">
+                        <button class="ingredients-btn" onclick="openModal('postcard')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text4">Customizable white chocolate postcard on top</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('postcard', 100, 1, 'imgs/postcard.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn"  onclick="addFromSelected(this, 'postcard')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="queensgambit">
+                    <h4 class="card-header" data-i18n="bento.name5">Queens Gambit</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/queensgambit.jpg" alt="Queens Gambit">
+                        <button class="ingredients-btn" onclick="openModal('queensgambit')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text5">Chess-themed elegance for strategic thinkers</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('queensgambit', 100, 1, 'imgs/queensgambit.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'queensgambit')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="zoo">
+                    <h4 class="card-header" data-i18n="bento.name6">Zoo</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/zoo.jpg" alt="Zoo">
+                        <button class="ingredients-btn" onclick="openModal('zoo')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text6">Cute animal toppers perfect for kids' parties</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('zoo', 100, 1, 'imgs/zoo.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'zoo')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="kittens">
+                    <h4 class="card-header" data-i18n="bento.name7">Kittens</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/kittens.jpg" alt="Kittens">
+                        <button class="ingredients-btn" onclick="openModal('kittens')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text7">Sweet pastel kittens for cat lovers</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('kittens', 100, 1, 'imgs/kittens.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'kittens')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="bentoCard" data-product-id="fireworks">
+                    <h4 class="card-header" data-i18n="bento.name8">Fireworks</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/fireworks.jpg" alt="Fireworks">
+                        <button class="ingredients-btn" onclick="openModal('fireworks')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="bento.text8">Comes with matches and sugar powder for the viral fire trick</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('fireworks', 100, 1, 'imgs/fireworks.jpg', 'kg', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span>
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'fireworks')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sets">
+            <h1 data-i18n="set.header">Sets</h1>
+
+            <div class="catalog-block">
+                <div class="card" id="newCard4" data-product-id="hardrock">
+                    <h4 class="card-header" data-i18n="set.name1">HardRock</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/hardrock.jpg" alt="HardRock">
+                        <button class="ingredients-btn" onclick="openModal('hardrock')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text1">For an important party with serious music</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('hardrock', 100, 10, 'imgs/hardrock.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'hardrock')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="genderparty">
+                    <h4 class="card-header" data-i18n="set.name2">Gender Party</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/genderparty.jpg" alt="Gender Party">
+                        <button class="ingredients-btn" onclick="openModal('genderparty')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text2">Gender reveal excitement with pink and blue surprise filling</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('genderparty', 100, 10, 'imgs/genderparty.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'genderparty')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="wedding">
+                    <h4 class="card-header" data-i18n="set.name3">Outdoor Wedding</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/wedding.jpg" alt="Outdoor Wedding">
+                        <button class="ingredients-btn" onclick="openModal('wedding')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text3">Elegant wedding set with customizable cream colors</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('wedding', 100, 10, 'imgs/wedding.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'wedding')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="boardgame">
+                    <h4 class="card-header" data-i18n="set.name4">Boardgame</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/boardgame.jpg" alt="Boardgame">
+                        <button class="ingredients-btn" onclick="openModal('boardgame')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text4">D&D adventure theme with dragons and dice vibes</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('boardgame', 100, 10, 'imgs/boardgame.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'boardgame')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="burger">
+                    <h4 class="card-header" data-i18n="set.name5">Burger</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/burger.jpg" alt="Burger">
+                        <button class="ingredients-btn" onclick="openModal('burger')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text5">Burger-patterned bento with tahini halva flavor and upside-down cupcakes</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('burger', 100, 10, 'imgs/burger.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'burger')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="firstdate">
+                    <h4 class="card-header" data-i18n="set.name6">First Date</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/firstdate.jpg" alt="First Date">
+                        <button class="ingredients-btn" onclick="openModal('firstdate')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text6">Romantic set with champagne bottles and strawberry-chocolate flavor</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('firstdate', 100, 10, 'imgs/firstdate.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'firstdate')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="teambuilding">
+                    <h4 class="card-header" data-i18n="set.name7">Teambuilding</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/teambuilding.jpg" alt="Teambuilding">
+                        <button class="ingredients-btn" onclick="openModal('teambuilding')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text7">Corporate branding with chocolate logos on every cupcake</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('teambuilding', 100, 10, 'imgs/teambuilding.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'teambuilding')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" id="setCard" data-product-id="cherrygarden">
+                    <h4 class="card-header" data-i18n="set.name8">Cherry Garden</h4>
+                    <div class="card-body">
+                        <img class="card-img cake-card" src="imgs/cherrygarden.jpg" alt="Cherry Garden">
+                        <button class="ingredients-btn" onclick="openModal('cherrygarden')">
+                            <span data-i18n="catalog.ingredients">Ingridients</span>
+                        </button>
+                    </div>
+                    <p class="card-text" data-i18n="set.text8">Cherry-topped indulgence with jam-filled cupcakes</p>
+                    
+                    <div class="card-btns">
+                        <div class="dropstart price-list">
+                            <p class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="catalog.prices">
+                                Price
+                            </p>
+                            <div class="dropdown-menu cake-prices">
+                                <p class="dropdown-item price-item" onclick="selectPrice('cherrygarden', 100, 10, 'imgs/cherrygarden.jpg', 'set', this)">
+                                    <span data-i18n="catalog.kg">1 kg</span> 
+                                    <span> + </span>
+                                    <span data-i18n="catalog.num10">10 pcs</span> 
+                                    <span> - 100₴</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button class="card-link order-btn" onclick="addFromSelected(this, 'cherrygarden')">
+                            <p data-i18n="catalog.order">Add to cart</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cake-order">
+            <h2 data-i18n="catalog.orderIndivHeader">Want to order something individual and special?</h2>
+            <button id="order-indiv-btn">
+                <a href="order.html" data-i18n="catalog.orderIndiv">Let us know!</a>
+            </button>
+        </div>
+
+        
+        <!-- modal blocks -->
+        <div id="ingredientModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <div id="modalIngredients"></div>
+            </div>
+        </div>
+
+        <div id="addToCartModal" class="modal">
+            <div class="modal-content">
+                <h3 data-i18n="catalog.addedToCart">Додано до кошику!</h3>
+                
+                <div id="added-item-preview"></div>
+                
+                <div class="modal-buttons">
+                    <button onclick="continueShoppingModal()" data-i18n="catalog.continueShopping">
+                        Продовжити покупки
+                    </button>
+                    <button onclick="goToCartModal()" data-i18n="catalog.goToCart">
+                        До кошику
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <div id="footer-navigation">
+                <h5 data-i18n="footer.navHeader">About us</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="index.html#about" data-i18n="footer.history">History</a>
+                    </li>
+                    <li>
+                        <a href="index.html#number-block" data-i18n="footer.numbers">Why we</a>
+                    </li>
+                    <li>
+                        <a href="index.html#review-container" data-i18n="footer.reviews">Rewies</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html" data-i18n="footer.catalog">Products</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-catalog">
+                <h5 data-i18n="footer.cakeHeader">Products</h5>
+                <ul class="footer-list">
+                    <li>
+                        <a href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
+                    </li>
+                    <li>
+                        <a href="catalog.html#sets" data-i18n="nav.sets">Sets</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="footer-address-hours">
+                <div id="footer-address">
+                    <h5 data-i18n="footer.addressHead">Addres</h5>
+                    <p data-i18n="footer.address">25 Marshal Zhukov Avenue, Odesa 12165, Ukraine</p>
+                </div>
+
+                <div id="footer-hours">
+                    <h5 data-i18n="footer.hoursHead">Open hours</h5>
+                    <ul id="footer-hours-list">
+                        <li data-i18n="footer.MonFri">Monday-Friday - 10:00-20:00</li>
+                        <li data-i18n="footer.SatSun">Saturday-Sunday - 11:00-22:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <h5 data-i18n="footer.contacts">Contacts</h5>
+                <div>
+                    <ul class="footer-list">
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p data-i18n="footer.tel">Tel:</p>
+                            <a href="tel:+380674883725" class="call">+38(067)488-37-25</a>
+                        </li>
+                        <li>
+                            <p>Email:</p>
+                            <a href="mailto:i.yakimova174@gmail.com" class="call">i.yakimova174@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-media">
+                    <a href="https://t.me/kirahi"><img src="imgs/telegram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/instagram.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/tiktok.svg" class="footer-icon"></a>
+                    <a href="#"><img src="imgs/pinterest.svg" class="footer-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <p>© 2025, Iracake Home Bakery</p>
+        </div>
+    </footer>
+
+    <script src="js/translation.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
