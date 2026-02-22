@@ -153,17 +153,17 @@
                                 </label>
                                 <input type="text" id="name" name="Name" placeholder="Ваше ім'я"
                                         data-placeholder-en="Your name" data-placeholder-ru="Ваше имя"
-                                        data-placeholder-ua="Ваше ім'я" required>
+                                        data-placeholder-ua="Ваше ім'я" autocomplete="name" required>
 
                                 <label for="tel" id="lbl-tel" class="labels number" data-i18n="order.phoneLabel">
                                     Phone number<span>*</span>
                                 </label>
-                                <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" required>
+                                <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" autocomplete="tel" required>
 
                                 <label for="nickname" id="lbl-nickname" class="labels" data-i18n="order.telegramLabel">
                                     Telegram
                                 </label>
-                                <input type="text" id="nickname" name="Telegram" placeholder="@username">
+                                <input type="text" id="nickname" name="Telegram" placeholder="@username" autocomplete="off">
 
                                 <label for="wish" id="lbl-wish" class="labels" data-i18n="order.wishLabel">
                                     Add your wishes
@@ -321,6 +321,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="js/translation.js"></script>
     <script src="js/shop.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/order.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

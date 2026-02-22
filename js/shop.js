@@ -689,20 +689,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
-    }
-  });
-}, { threshold: 0.25 });
-
-document.querySelectorAll('#grid-numbers > div').forEach(el => {
-  observer.observe(el);
-});
-
 const pendingSelection = {};
 
 function selectPrice(id, price, quantity, img, unit, el) {
@@ -757,8 +743,8 @@ function getDiscountPercent(id) {
 function showAddedModal(id, img, price, quantity, unit) {
     const preview = document.getElementById('added-item-preview');
     const discount = getDiscountPercent(id);
-    const totalPrice = price * quantity;
-    const totalFinalPrice = getDiscountedPrice(id, totalPrice);
+    const totalPrice = price;
+    const totalFinalPrice = getDiscountedPrice(id, price);
 
     if (preview) {
         preview.innerHTML = `
@@ -785,8 +771,6 @@ function goToCartModal() {
     window.location.href = 'cart.html';
 }
 
-// ========== КОРЗИНА ==========
-
 function updateCartCounter() {
     const cart = getCart();
     const total = cart.reduce((sum, item) => sum + (Number(item.sets) || 0), 0);
@@ -810,7 +794,7 @@ function getProductName(id) {
     return translations[currentLang][mapping.section][mapping.key];
 }
 
-function addToCart(id, price, quantity, img, unit = 'pcs') {
+function addToCart(id, price, quantity, img, unit) {
     const cart = getCart();
     const finalPrice = getDiscountedPrice(id, Number(price));
     const originalPrice = Number(price);
@@ -838,108 +822,6 @@ function addToCart(id, price, quantity, img, unit = 'pcs') {
     showAddedModal(id, img, originalPrice, Number(quantity), unit);
 }
 
-function changeSets(id, quantity, delta) {
-    const cart = getCart();
-    const item = cart.find(i => i.id === id && i.quantity === quantity);
-
-    if (item) {
-        item.sets += delta;
-        if (item.sets <= 0) {
-            removeFromCart(id, quantity);
-            return;
-        }
-    }
-
-    saveCart(cart);
-    renderCart();
-}
-
-function removeFromCart(id, quantity) {
-    let cart = getCart();
-    cart = cart.filter(item =>
-        !(item.id === id && item.quantity === quantity)
-    );
-    saveCart(cart);
-    renderCart();
-}
-
-function clearCart() {
-    localStorage.removeItem('cart');
-    renderCart();
-    updateCartCounter();
-}
-
-function renderCart() {
-    const cart = getCart();
-    const emptyCart = document.getElementById('cartEmpty');
-    const filledCart = document.getElementById('cartFull');
-
-    if (!emptyCart || !filledCart) return;
-
-    if (!cart || cart.length === 0) {
-        emptyCart.style.display = 'block';
-        filledCart.style.display = 'none';
-        updateCartCounter();
-        return;
-    }
-
-    emptyCart.style.display = 'none';
-    filledCart.style.display = 'grid';
-
-    const cartItems = document.getElementById('cart-item');
-    cartItems.innerHTML = cart.map(item => {
-        const hasDiscount = item.originalPrice && item.originalPrice !== item.price;
-        return `
-        <div class="cart-item" data-id="${item.id}">
-            <button class="cart-item-remove" onclick="removeFromCart('${item.id}', ${item.quantity})">✕</button>
-
-            <img src="${item.img}" alt="${getProductName(item.id)}" class="cart-item-img">
-            
-            <div class="cart-item-info">
-                <div class="cart-item-text">
-                    <h4>${getProductName(item.id)}</h4>
-                    <p>
-                        ${item.quantity} ${getUnit(item.unit, item.quantity)} — 
-                        ${hasDiscount ? `<s>${item.originalPrice}₴</s> <b>${item.price}₴</b>` : `${item.price}₴`}
-                    </p>
-                </div>
-
-                <div class="cart-item-quantity">
-                    <button id="cart-add-quantity" onclick="changeSets('${item.id}', ${item.quantity}, -1)"><p>−</p></button>
-                    <span>${item.sets}</span>
-                    <button id="cart-remove-quantity" onclick="changeSets('${item.id}', ${item.quantity}, +1)"><p>+</p></button>
-                </div>
-                
-                <p class="cart-item-subtotal">
-                    ${translations[currentLang].cart.total}: 
-                    ${hasDiscount ? `<s>${item.originalPrice * item.sets}₴</s> <b>${item.price * item.sets}₴</b>` : `${item.price * item.sets}₴`}
-                </p>
-            </div>
-        </div>
-    `}).join('');
-
-    const total = cart.reduce((sum, item) => sum + (item.price * item.sets), 0);
-    document.getElementById('totalSum').textContent = `${total}₴`;
-
-    updateCartCounter();
-}
-
-document.querySelector('cartForm').addEventListener('submit', function(e) {
-    const cart = getCart();
-    
-    const orderText = cart.map(item => {
-        const unitLabel = item.unit ? getUnit(item.unit, item.quantity) : 'шт';
-        return `${getProductName(item.id)} ${item.quantity} ${unitLabel} — ${item.price}₴`;
-    }).join(', ');
-
-    const total = cart.reduce((sum, item) => sum + (item.price * item.sets), 0);
-
-    document.getElementById('orderItemsHidden').value = orderText || 'Корзина пуста';
-    document.getElementById('totalPriceHidden').value = `${total}₴`;
-});
-
-// ========== МОДАЛКА ОФОРМЛЕНИЯ ==========
-
 function openCheckoutModal() {
     const cart = getCart();
     if (!cart || cart.length === 0) return;
@@ -954,8 +836,8 @@ function openCheckoutModal() {
                 <span>${getProductName(item.id)}</span>
                 <span>${item.quantity} ${getUnit(item.unit, item.quantity)} × ${item.sets}</span>
                 <span>
-                    ${hasDiscount ? `<s>${item.originalPrice * item.sets}₴</s> ` : ''}
-                    ${item.price * item.sets}₴
+                    ${hasDiscount ? `<s>${item.originalPrice}₴</s> ` : ''}
+                    ${item.price}₴
                 </span>
             </div>
         `}).join('');
@@ -996,9 +878,9 @@ if (checkoutForm) {
         const cart = getCart();
 
         const orderText = cart.map(item => {
-            const unitLabel = getUnit(item.unit, item.quantity);
+            const unitLabel = getUnit(item.unit || 'pcs', item.quantity);
             const hasDiscount = item.originalPrice && item.originalPrice !== item.price;
-            return `${getProductName(item.id)} ${item.quantity} ${unitLabel} × ${item.sets} = ${item.price * item.sets}₴${hasDiscount ? ' (знижка!)' : ''}`;
+            return `${getProductName(item.id)} ${item.quantity} ${unitLabel} = ${item.price}₴${hasDiscount ? ' (знижка!)' : ''}`;
         }).join(' | ');
 
         const total = cart.reduce((sum, item) =>
@@ -1013,35 +895,14 @@ if (checkoutForm) {
     });
 }
 
-const clearCartBtn = document.getElementById('clearCartBtn');
-if (clearCartBtn) {
-    clearCartBtn.addEventListener('click', function() {
-        const message =
-            currentLang === 'ua' ? 'Очистити кошик?' :
-            currentLang === 'ru' ? 'Очистить корзину?' :
-            'Clear cart?';
-
-        if (confirm(message)) {
-            clearCart();
-        }
-    });
-}
-
 const checkoutBtn = document.getElementById('order-btn');
 if (checkoutBtn) {
     checkoutBtn.addEventListener('click', openCheckoutModal);
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
-
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
     updateCartCounter();
 
-    if (document.getElementById('cartEmpty')) {
-        renderCart();
-    }
-
-    // Автоматически добавляем HOT🔥 на карточки со скидкой
     Object.keys(discountItems).forEach(id => {
         const card = document.querySelector(`[data-product-id="${id}"]`);
         if (card) {
@@ -1055,38 +916,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-});
-
-window.addEventListener('storage', function(e) {
-    if (e.key === 'cart') {
-        updateCartCounter();
-        if (document.getElementById('cartEmpty')) {
-            renderCart();
-        }
-    }
-});
-
-$(document).ready(function () {
-  $('.reviews-carousel').owlCarousel({
-    loop: true,
-    margin: 30,
-    nav: false,
-    dots: true,
-    center: true,
-    slideBy: 1,
-
-    responsive: {
-      0: {
-        items: 1
-      },
-      768: {
-        items: 1
-      },
-      1200: {
-        items: 3
-      }
-    }
-  });
+    updateContent();
 });
 
 function openModal(cakeId) {
@@ -1151,160 +981,3 @@ function searchSite(event) {
     document.getElementById('searchInput').value = '';
 }
 
-$(document).ready(function() {
-    const $phone = $('#tel');
-    
-    $phone.mask('+380(00)000-00-00', {
-        placeholder: "+380(__) ___-__-__"
-    });
-    
-    $phone.on('focus', function() {
-        if ($(this).val() === '' || $(this).val() === '+380(__) ___-__-__') {
-            $(this).val('+380(');
-        }
-    });
-    
-    $phone.on('blur', function() {
-        if ($(this).val() === '+380(' || $(this).val() === '+380(__) ___-__-__') {
-            $(this).val('');
-        }
-    });
-});
-
-$(document).ready(function() {
-    const $tg = $('#nickname');
-    
-    $tg.mask('@AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
-        translation: {
-            'A': {pattern: /[A-Za-z0-9_]/}
-        },
-        placeholder: "@username"
-    });
-    
-    $tg.on('focus', function() {
-        if ($(this).val() === '') {
-            $(this).val('@');
-        }
-    });
-    
-    $tg.on('blur', function() {
-        if ($(this).val() === '@') {
-            $(this).val('');
-        }
-    });
-});
-
-const input = document.getElementById('delivery-date');
-const error = document.getElementById('delivery-date-error');
-
-const today = new Date();
-today.setDate(today.getDate() + 3);
-
-const yyyy = today.getFullYear();
-const mm = String(today.getMonth() + 1).padStart(2, '0');
-const dd = String(today.getDate()).padStart(2, '0');
-
-input.min = `${yyyy}-${mm}-${dd}`;
-
-if (!input.value) {
-    input.classList.add('empty');
-}
-
-input.addEventListener('change', () => {
-  const selected = new Date(input.value);
-  const day = selected.getDay();
-
-  if (input.value) {
-        input.classList.remove('empty');
-    } else {
-        input.classList.add('empty');
-    }
-});
-
-document.querySelectorAll('.custom-select .dropdown-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const value = this.getAttribute('data-value');
-        const targetId = this.getAttribute('data-target');
-        const text = this.querySelector('span') ? this.querySelector('span').textContent : this.textContent;
-        
-        const button = this.closest('.custom-select').querySelector('.select-button');
-        const buttonSpan = button.querySelector('span');
-        
-        if (buttonSpan) {
-            buttonSpan.textContent = text;
-        }
-        
-        button.classList.add('selected');
-        
-        const hiddenInput = document.getElementById(targetId);
-        if (hiddenInput) {
-            hiddenInput.value = value;
-        }
-        
-        const dropdownMenu = this.closest('.dropdown-menu');
-        if (dropdownMenu) {
-            const bsDropdown = bootstrap.Dropdown.getInstance(this.closest('.custom-select').querySelector('[data-bs-toggle="dropdown"]'));
-            if (bsDropdown) {
-                bsDropdown.hide();
-            }
-        }
-    });
-});
-
-document.querySelector('.order-form').addEventListener('submit', function(e) {
-    const productValue = document.getElementById('productHidden').value;
-    const frostingValue = document.getElementById('frostingHidden').value;
-    const spongeValue = document.getElementById('spongeHidden').value;
-    const fillingValue = document.getElementById('fillingHidden').value;
-    
-    if (!productValue) {
-        e.preventDefault();
-        alert(
-          currentLang === 'ua' ? 'Будь ласка, оберіть тип продукту' :
-          currentLang === 'ru' ? 'Пожалуйста, выберите тип продукта' :
-          'Please choose the product');
-        return false;
-    }
-
-    if (!spongeValue) {
-        e.preventDefault();
-        alert (
-          currentLang === 'ua' ? 'Будь ласка, оберіть тип коржу' :
-          currentLang === 'ru' ? 'Пожалуйста, выберите тип коржа' :
-          'Please choose the sponge');
-        return false;
-    }
-    
-    if (!frostingValue) {
-        e.preventDefault();
-        alert(
-          currentLang === 'ua' ? 'Будь ласка, оберіть тип крему' :
-          currentLang === 'ru' ? 'Пожалуйста, выберите тип крема' :
-          'Please choose the frosting');
-        return false;
-    }
-
-    if (!fillingValue) {
-        e.preventDefault();
-        alert (
-          currentLang === 'ua' ? 'Будь ласка, оберіть тип начинки' :
-          currentLang === 'ru' ? 'Пожалуйста, выберите тип начинки' :
-          'Please choose the filling');
-        return false;
-    }
-});
-
-document.getElementById('fileInput').addEventListener('change', function() {
-    const fileLabel = document.getElementById('fileLabel');
-    if (this.files && this.files[0]) {
-        fileLabel.textContent = this.files[0].name;
-        fileLabel.style.opacity = '1';
-    } else {
-        fileLabel.textContent = 
-            currentLang === 'ua' ? 'Виберіть файл' :
-            currentLang === 'ru' ? 'Выберите файл' :
-            'Choose file';
-    }
-});

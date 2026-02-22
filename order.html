@@ -120,11 +120,11 @@
                         <div class="inputs-column mx-auto">
                             <input type="text" id="name" name="Name" placeholder="Ваше ім'я"
                                 data-placeholder-en="Your name" data-placeholder-ru="Ваше имя"
-                                data-placeholder-ua="Ваше ім'я" required>
+                                data-placeholder-ua="Ваше ім'я" autocomplete="name" required>
 
-                            <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" required>
+                            <input type="tel" id="tel" name="Tel" placeholder="+380..." maxlength="17" autocomplete="tel" required>
 
-                            <input type="text" id="nickname" name="Telegram" placeholder="@username">
+                            <input type="text" id="nickname" name="Telegram" placeholder="@username" autocomplete="off">
 
                             <div class="custom-select">
                                 <button type="button" class="select-button" data-bs-toggle="dropdown"
@@ -430,6 +430,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="js/translation.js"></script>
     <script src="js/shop.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/form.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
