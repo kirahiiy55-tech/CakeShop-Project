@@ -689,6 +689,16 @@ window.addEventListener('scroll', function() {
     }
 });
 
+document.querySelectorAll('#navbarCake a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function() {
+        const navbarCollapse = document.getElementById('navbarCake');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) bsCollapse.hide();
+        }
+    });
+});
+
 const pendingSelection = {};
 
 function selectPrice(id, price, quantity, img, unit, el) {
@@ -981,3 +991,9 @@ function searchSite(event) {
     document.getElementById('searchInput').value = '';
 }
 
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (btn) {
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    }
+});

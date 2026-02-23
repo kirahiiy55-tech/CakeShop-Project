@@ -791,7 +791,7 @@ header {
 
 #indivOrderForm {
     display: grid;
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 3fr 4fr;
     width: 100%;
     margin: 2rem auto 0 auto;
     padding: 2rem auto;
@@ -803,7 +803,7 @@ header {
     justify-items: center;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0 1rem 2rem;
+    margin: 1rem 3rem 1rem 2rem;
 }
 
 #order-head, #cart-header {
@@ -824,6 +824,15 @@ header {
     justify-items: right;
 }
 
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: right;
+    gap: 0.5rem;
+    margin-right: -6rem;
+    margin-top: 3rem;
+}
+
 #indiv-order-btn {
     border: none;
     border-radius: 10px;
@@ -832,22 +841,17 @@ header {
     height: 2.5rem;
     padding: 8px 12px;
     align-content: center;
-}
-
-.form-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: right;
-    gap: 1rem;
-    margin-right: -6rem;
-    margin-top: 3rem;
+    margin: 0;
+    grid-column: 2;
+    justify-self: right;
+    margin-right: 1rem;
 }
 
 .labels-column, .inputs-column {
     display: grid;
-    grid-template-rows: repeat(11, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .inputs-column {
@@ -1018,21 +1022,22 @@ input[type="date"]:not(.empty):not(:focus) {
 .form-photo-container {
     display: flex;
     margin: 0 2rem 2rem 0;
-    padding-left: 1rem;
+    padding-left: 0;
 }
 
 .form-photo {
     padding: 0;
     margin-right: 1rem;
     width: 700px;
+    height: auto;
     box-shadow: 8px 8px 4px rgb(229, 219, 212);
     border-radius: 15%;
 }
 
 #form-divider {
     width: 4px;
-    height: 900px;
-    margin-top: 1.5rem;
+    height: 1000px;
+    margin-top: 2rem;
 }
 
 .delivery-rule {
@@ -1090,6 +1095,10 @@ input[type="date"]:not(.empty):not(:focus) {
         padding: 0 1rem;
     }
 
+    #orderForm {
+        margin: 1rem 0 1rem 2rem;
+    }
+
     .order-form {
         text-align: left;
         justify-items: center;
@@ -1129,6 +1138,12 @@ input[type="date"]:not(.empty):not(:focus) {
         max-width: 350px;
         margin: 0 auto 0 -1rem;
     }
+
+    #indiv-order-btn {
+        grid-column: 1;
+        justify-self: right;
+        margin-right: 1rem;
+    }
     
     #lbl-name { order: 1; }
     #name { order: 2; }
@@ -1164,8 +1179,8 @@ input[type="date"]:not(.empty):not(:focus) {
     
     #lbl-delivery-date { order: 24; }
     #delivery-date { order: 25; }
-    
-    #indiv-order-btn { order: 26; }
+
+    #indiv-order-btn {order: 26;}
 
     .form-photo-container {
         display: none;
@@ -1570,7 +1585,7 @@ hr {
 
 /* Order */
 #cake-order {
-    margin: 2rem auto;
+    margin: 2rem auto 0 auto;
 }
 
 #order-indiv-btn {
@@ -1912,4 +1927,84 @@ hr {
     background: rgba(255, 255, 255, 0.4);
     align-content: center;
     color: rgb(100, 60, 30);
+}
+
+@media (max-width: 768px) {
+    #cartFull {
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        margin: 1rem auto;
+    }
+
+    #cart-left {
+        justify-items: center;
+        margin: 0 0 2rem -1.7rem;
+        width: 90%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .cart-item-img {
+        width: 220px;
+        margin: 2rem 2rem 0 2rem;
+    }
+
+    .cart-item-info, .cart-item-text {
+        justify-content: center;    
+        justify-items: center;
+    }
+
+    #cart-right {
+        position: sticky;
+        top: 1rem;
+        justify-items: center;
+        margin: 0 0 0 -1.7rem;
+    }
+
+    #cart-total {
+        padding-top: 0;
+    }
+
+    .order-form-container {
+        justify-content: center;
+        padding: 0.5rem 0 1rem 0;
+        gap: 0.5rem;
+    }
+
+    .order-form-container label {
+        text-align: center;
+    }
+
+    #cart-order-btns {
+        margin-right: 1rem;
+    }
+}
+
+/* Scroll top */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: none;
+    justify-content: start;
+    align-content: start;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+}
+
+#scrollTopBtn img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }

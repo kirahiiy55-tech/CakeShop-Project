@@ -23,7 +23,7 @@ const translations = {
             missionText1: "We create cakes, bento cakes, cupcakes, and dessert sets to order for a variety of occasions — from intimate celebrations to weddings and business receptions. We work with birthdays, gender reveal parties, corporate events, and small personal moments.",
             missionText2: "We believe that sweets are not only for special occasions. Sometimes a cake is simply a way to treat yourself or make an ordinary day a little better. Our motto is simple and honest: <strong>make life sweeter</strong> — through flavor, careful craftsmanship, and attention to detail.",
             readMore: "Read more",
-            readLess: "Show less"
+            showLess: "Show less"
         },
 
         number: {
@@ -264,7 +264,7 @@ const translations = {
             missionText1: "Ми готуємо торти, бенто-торти, капкейки та набори на замовлення для різних форматів — від камерних свят до весільних і бізнес-фуршетів. Працюємо з днями народження, гендер-паті, корпоративними подіями та невеликими особистими приводами.",
             missionText2: "Ми віримо, що солодке потрібне не лише з особливих нагод. Іноді торт — це спосіб порадувати себе або зробити звичайний день трохи кращим. Наш девіз простий і щирий: <strong>ми робимо життя солодшим</strong> — через смак, акуратну роботу та увагу до деталей.",
             readMore: "Далі",
-            readLess: "Приховати"
+            showLess: "Приховати"
         },
         
         number: {
@@ -436,7 +436,7 @@ const translations = {
         order: {
             nameLabel: "Ім'я",
             phoneLabel: "Номер телефону",
-            telegramLabel: "Telegram",
+            telegramLabel: "Телеграм",
             productLabel: "Тип продукту",
             spongeLabel: "Тип коржів",
             frostingLabel: "Тип крему",
@@ -508,7 +508,7 @@ const translations = {
             missionText1: "Мы готовим торты, бенто-торты, капкейки и наборы на заказ для разных форматов: от камерных праздников до свадебных и бизнес-фуршетов. Работаем с днями рождения, гендер-пати, корпоративными мероприятиями и небольшими личными поводами.",
             missionText2: "Мы верим, что сладкое нужно не только по особым датам. Иногда торт — это способ порадовать себя или сделать обычный день немного лучше. Наш девиз простой и честный: <strong>мы делаем жизнь слаще</strong> — через вкус, аккуратную работу и внимание к деталям.",
             readMore: "Еще",
-            readLess: "Скрыть"
+            showLess: "Скрыть"
         },
         
         number: {
@@ -521,8 +521,8 @@ const translations = {
             text3: "кексов",
             head4: "создали",
             text4: "бенто",
-            head5: "стали частью",
-            text5: "праздников"
+            head5: "были на",
+            text5: "праздниках"
         },
 
         review: {
@@ -680,7 +680,7 @@ const translations = {
         order: {
             nameLabel: "Имя",
             phoneLabel: "Номер телефона",
-            telegramLabel: "Telegram",
+            telegramLabel: "Телеграм",
             productLabel: "Тип продукта",
             spongeLabel: "Тип коржей",
             frostingLabel: "Тип крема",

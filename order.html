@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cake Shop (I.Yakimova)</title>
 
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/shop.css" rel="stylesheet">
 </head>
@@ -65,6 +66,7 @@
             <div class="nav-btns ms-auto" id="cart-btn">
                 <a class="nav-link" href="cart.html" data-i18n="nav.cart" id="nav-cart">
                     <img src="imgs/cart.svg" alt="Cart" class="icon">
+                    <span id="cart-counter">0</span>
                 </a>
             </div>
 
@@ -174,7 +176,7 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#" data-value="coffee" data-target="spongeHidden">
-                                            <span data-i18n="order.Lemon">Lemon</span>
+                                            <span data-i18n="order.lemon">Lemon</span>
                                         </a>
                                     </li>
                                     <li>
@@ -287,11 +289,11 @@
 
                             <input type="date" id="delivery-date" name="DeliveryDate">
                         </div>
-                    </div>
 
-                    <button type="submit" class="ms-auto" id="indiv-order-btn" data-i18n="order.order">
-                        Order
-                    </button>
+                        <button type="submit" class="ms-auto" id="indiv-order-btn" data-i18n="order.order">
+                            Order
+                        </button>
+                    </div>
                 </form>
             </div>
 
@@ -425,6 +427,9 @@
         </div>
     </footer>
 
+    <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <img src="imgs/arrTop.svg" alt="to Top">
+    </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>

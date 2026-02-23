@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cake Shop (I.Yakimova)</title>
 
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/shop.css" rel="stylesheet">
 </head>
@@ -42,11 +43,11 @@
                             Our cakes
                         </a>
                         <div class="dropdown-menu" id="cake-drops" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item cake-item" href="catalog.html#new-cakes" data-i18n="nav.new">New</a>
-                            <a class="dropdown-item cake-item" href="catalog.html#cakes" data-i18n="nav.cakes">Cakes</a>
-                            <a class="dropdown-item cake-item" href="catalog.html#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
-                            <a class="dropdown-item cake-item" href="catalog.html#bento" data-i18n="nav.bento">Bento</a>
-                            <a class="dropdown-item cake-item" href="catalog.html#sets" data-i18n="nav.sets">Set</a>
+                            <a class="dropdown-item cake-item" href="#new-cakes" data-i18n="nav.new">New</a>
+                            <a class="dropdown-item cake-item" href="#cakes" data-i18n="nav.cakes">Cakes</a>
+                            <a class="dropdown-item cake-item" href="#cupcakes" data-i18n="nav.cupcakes">Cupcakes</a>
+                            <a class="dropdown-item cake-item" href="#bento" data-i18n="nav.bento">Bento</a>
+                            <a class="dropdown-item cake-item" href="#sets" data-i18n="nav.sets">Set</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -1488,6 +1489,10 @@
             <p>© 2025, Iracake Home Bakery</p>
         </div>
     </footer>
+
+    <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <img src="imgs/arrTop.svg" alt="to Top">
+    </button>
 
     <script src="js/translation.js"></script>
     <script src="js/shop.js"></script>
