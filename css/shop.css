@@ -668,13 +668,6 @@ header {
     border-radius: 10px;
 }
 
-@media (max-width: 768px) {
-    .hotOffer {
-        left: 4rem;
-        top: 6.5rem;
-    }
-}
-
 .card-header {
     font-family: 'Segoe Script';
     font-size: 1.8rem;
