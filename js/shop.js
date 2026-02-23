@@ -689,7 +689,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-document.querySelectorAll('#navbarCake a[href^="#"]').forEach(link => {
+document.querySelectorAll('#navbarCake a[href^="#"]:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', function() {
         const navbarCollapse = document.getElementById('navbarCake');
         if (navbarCollapse && navbarCollapse.classList.contains('show')) {
