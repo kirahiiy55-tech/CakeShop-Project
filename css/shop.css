@@ -756,6 +756,7 @@ header {
 .price-item.active {
     background: rgba(126, 77, 40, 0.2);
     color: inherit;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -1958,6 +1959,7 @@ hr {
     .cart-item-info, .cart-item-text {
         justify-content: center;    
         justify-items: center;
+        margin: 0.5rem auto;
     }
 
     #cart-right {
