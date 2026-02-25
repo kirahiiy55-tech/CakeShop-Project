@@ -114,7 +114,7 @@ function renderCart() {
                 </div>
                 
                 <p class="cart-item-subtotal">
-                    ${translations[currentLang].cart.total}: 
+                    ${translations[currentLang].cart.total} 
                     ${hasDiscount ? `<s>${item.originalPrice * item.sets}₴</s> <b>${item.price * item.sets}₴</b>` : `${item.price * item.sets}₴`}
                 </p>
             </div>

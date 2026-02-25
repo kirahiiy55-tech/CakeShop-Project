@@ -45,7 +45,7 @@ const translations = {
         },
 
         catalog: {
-            prices: "Prices",
+            prices: "Quantity",
             num1: "1 pcs",
             num4: "4 pcs",
             num6: "6 pcs",
@@ -186,7 +186,7 @@ const translations = {
             indivOrderBtn: "Let us know about your ideas",
             productHead: "Products",
             summary: "Order Summary",
-            total: "Total",
+            total: "Total sum:",
             order: "Make the order",
             reset: "Clear cart"
         },
@@ -286,7 +286,7 @@ const translations = {
         },
 
         catalog: {
-            prices: "Ціна",
+            prices: "Кількість",
             num1: "1 шт",
             num4: "4 шт",
             num6: "6 шт",
@@ -428,7 +428,7 @@ const translations = {
             indivOrderBtn: "Розкажіть нам про ваші ідеї",
             productHead: "Продукти",
             summary: "Загальна сума",
-            total: "Разом",
+            total: "Разом:",
             order: "Оформити замовлення",
             reset: "Очистити кошик"
         },
@@ -530,7 +530,7 @@ const translations = {
         },
 
         catalog: {
-            prices: "Цена",
+            prices: "Количество",
             num1: "1 шт",
             num4: "4 шт",
             num6: "6 шт",
@@ -672,7 +672,7 @@ const translations = {
             indivOrderBtn: "Расскажите нам о ваших идеях",
             productHead: "Продукты",
             summary: "Общая сумма",
-            total: "Всего",
+            total: "Всего:",
             order: "Оформить заказ",
             reset: "Очистить корзину"
         },

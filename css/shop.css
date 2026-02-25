@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
 }
 
 /* Header */
@@ -1804,7 +1804,7 @@ hr {
     width: 250px;
     height: auto;
     border-radius: 10%;
-    margin: 1rem 3rem;
+    margin: 1rem 2rem;
 }
 
 .cart-item-remove {
@@ -1819,7 +1819,7 @@ hr {
     align-items: center;
     position: absolute;
     top: 4px;
-    left: 4px;
+    right: 4px;
 }
 
 .cart-item-remove:hover {
@@ -1839,7 +1839,7 @@ hr {
     display: block;
     justify-content: left;    
     justify-items: left;
-    margin: 1rem;
+    margin: 1rem 4rem 1rem 0;
     gap: 0;
 }
 
